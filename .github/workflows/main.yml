@@ -25,9 +25,9 @@ jobs:
         run: |
         
           mkdir -p ${{ env.REPO_DIR }}
+          echo "asvhgv haghf">test.txt
           ls -l
-         # mv ./build/*.ipa ${{ env.REPO_DIR }}/${{ env.APP_NAME }}-${{ env.APP_VERSION }}.ipa
-
+          mv test.txt ${{ env.REPO_DIR }}
       - name: Clone archive repository
         uses: actions/checkout@v2
         with:
