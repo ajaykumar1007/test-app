@@ -6,7 +6,6 @@ on:
       - master
 
 env:
-  APP_NAME: "MyApp"
   REPO_NAME: "test-repo"
   REPO_OWNER: "ajaykumar1007"
   REPO_BRANCH: "0.0.3"
@@ -26,10 +25,13 @@ jobs:
           pwd
           mkdir -p ${{ env.REPO_DIR }}
           echo "asvhgv haghf">test.txt
+          git branch
           ls -l
           mv test.txt ${{ env.REPO_DIR }}
-          echo " fdsfc"
+          echo "******************* fist setup************************************"
           ls -l ${{ env.REPO_DIR }}
+          echo "************2nd step ***************"
+          pwd
       - name: Clone archive repository
         uses: actions/checkout@v2
         with:
@@ -41,18 +43,21 @@ jobs:
         run: |
           ls -l
           pwd
-          cp -r ${{ env.REPO_DIR }} archive-repo/
+          cp -r ${{ env.REPO_DIR }}/* archive-repo/
+          echo "***************3rd****************************"
           ls -l
           pwd
           cd archive-repo
+          echo "*****************4th step****************************"
           pwd
           ls -l
+          git branch
           
-          git config --global user.email "actions@github.com"
-          git config --global user.name "GitHub Actions"
+          #git config --global user.email "actions@github.com"
+          #git config --global user.name "GitHub Actions"
           git add .
           git commit -m "Add iOS build v${{ env.APP_VERSION }}"
-          git push
+          #git push
 
       - name: Clean up build artifacts
         run: rm -rf ./build
