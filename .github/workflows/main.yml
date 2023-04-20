@@ -41,6 +41,8 @@ jobs:
           cp -r ${{ env.REPO_DIR }} archive-repo/
           ls -l
           cd archive-repo
+          ls -l
+          
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Actions"
           git add .
