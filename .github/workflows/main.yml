@@ -51,7 +51,7 @@ jobs:
           echo "*****************4th step****************************"
           pwd
           ls -l
-          git branch
+          git branch -a
           
           #git config --global user.email "actions@github.com"
           #git config --global user.name "GitHub Actions"
