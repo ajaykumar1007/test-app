@@ -3,7 +3,7 @@ name: Build and Upload iOS App
 on:
   push:
     branches:
-      - 0.0.3
+      - master
 
 env:
   APP_NAME: "MyApp"
