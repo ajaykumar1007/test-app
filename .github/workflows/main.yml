@@ -23,11 +23,13 @@ jobs:
 
       - name: Build iOS app
         run: |
-        
+          pwd
           mkdir -p ${{ env.REPO_DIR }}
           echo "asvhgv haghf">test.txt
           ls -l
           mv test.txt ${{ env.REPO_DIR }}
+          echo " fdsfc"
+          ls -l ${{ env.REPO_DIR }}
       - name: Clone archive repository
         uses: actions/checkout@v2
         with:
@@ -38,9 +40,12 @@ jobs:
       - name: Copy iOS build to archive repository
         run: |
           ls -l
+          pwd
           cp -r ${{ env.REPO_DIR }} archive-repo/
           ls -l
+          pwd
           cd archive-repo
+          pwd
           ls -l
           
           git config --global user.email "actions@github.com"
