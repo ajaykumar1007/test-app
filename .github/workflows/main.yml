@@ -42,8 +42,8 @@ jobs:
             git branch
             git add .
             git commit -m "Update to version"
-            git tag 0.0.5
-            git push origin 0.0.5
+            git tag 0.0.6
+            git push origin 0.0.6
 
 
 
