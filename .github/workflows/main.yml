@@ -42,10 +42,10 @@ jobs:
             echo $a
             pwd
             git branch
-            git add .
-            git commit -m "Update to version"
-            git tag 0.0.6
-            git push origin 0.0.6
+            #git add .
+            #git commit -m "Update to version"
+            #git tag 0.0.6
+            #git push origin 0.0.6
 
 
 
