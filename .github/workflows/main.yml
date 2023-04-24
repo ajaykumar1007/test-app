@@ -62,9 +62,11 @@ jobs:
           #git push
           
       - name: Notify Slack of build status
-        uses: actions/slack@v4
+      - uses: actions/checkout@v2
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
         with:
           status_text: ${{ job.status }}
           status_color: ${{ job.status == 'success' && '#2eb886' || '#ff6c5f' }}
