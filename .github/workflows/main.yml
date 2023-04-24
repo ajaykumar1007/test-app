@@ -31,10 +31,11 @@ jobs:
           echo "************2nd step ***************"
           pwd
       - name: Clone archive repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.0.2
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: ${{ env.REPO_BRANCH }}
+          token: ${{ secrets.P_TOKEN }}
           path: archive-repo
 
       - name: Copy iOS build to archive repository
