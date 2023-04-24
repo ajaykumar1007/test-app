@@ -6,8 +6,8 @@ on:
       - master
 
 env:
-  REPO_NAME: "ajaykumar1007"
-  REPO_OWNER: "ci-repo"
+  REPO_NAME: "ci-repo"
+  REPO_OWNER: "ajaykumar1007"
   REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
 
