@@ -32,9 +32,13 @@ jobs:
           ref: ${{ env.REPO_BRANCH }}
           token: ${{ secrets.P_TOKEN }}
           path: archive-repo
+          run: |
+             ls -l 
+             pwd
 
       - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
         run: |
+          pwd
           # list clone repo directory 
           ls -la
           rm -rf .git*
@@ -48,9 +52,6 @@ jobs:
             pwd
             git add .
             git commit -m "Update to version"
-
-      - name: Push Tag
-        run: |
             git tag 0.0.1
             git push origin 0.0.1
 
