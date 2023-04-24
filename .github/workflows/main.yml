@@ -24,9 +24,6 @@ jobs:
           # Package the app with the necessary assets
           # Upload the app to the App Store using the App Store Connect API
 
-    name: Slack Notification
-      runs-on: ubuntu-latest
-    steps:
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
