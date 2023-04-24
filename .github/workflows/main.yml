@@ -37,6 +37,7 @@ jobs:
         run: |
           # list clone repo directory 
           ls -la
+          rm -rf .git*
           cp -r ${{ env.REPO_DIR }}/* archive-repo/
           cd archive-repo/
           ls -la
