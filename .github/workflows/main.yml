@@ -50,7 +50,7 @@ jobs:
           echo "*****************4th step****************************"
           pwd
           ls -l Documentation
-          ls -l Sources
+          ls -l Sources/WonkaSDK.xcframework
           git branch -a
           python3 --version
           python --version
