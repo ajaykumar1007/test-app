@@ -23,7 +23,7 @@ jobs:
           touch  tets12
           mkdir -p ${{ env.REPO_DIR }}
           cp tets12 ${{ env.REPO_DIR }}
-          rm -rf .git*
+          #rm -rf .git*
 
 
       - name: Clone wonka-ios-spm-library-releases repository
