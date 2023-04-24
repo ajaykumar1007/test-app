@@ -24,9 +24,16 @@ jobs:
           # Package the app with the necessary assets
           # Upload the app to the App Store using the App Store Connect API
 
-      - name: Send GitHub Action trigger data to Slack workflow
+      - name: Send custom JSON data to Slack workflow
         id: slack
         uses: slackapi/slack-github-action@v1.23.0
+        with:
+          # This data can be any valid JSON from a previous step in the GitHub Action
+          payload: |
+            {
+              "key": "value",
+              "foo": "bar"
+            }
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
