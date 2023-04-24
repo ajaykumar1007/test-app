@@ -30,7 +30,7 @@ jobs:
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: ${{ env.REPO_BRANCH }}
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.P_TOKEN }}
           path: archive-repo
 
       - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
