@@ -44,6 +44,7 @@ jobs:
 
       - name: Git add and commit
         run: |
+            cd archive-repo/
             pwd
             git add .
             git commit -m "Update to version"
