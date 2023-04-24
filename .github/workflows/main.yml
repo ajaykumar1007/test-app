@@ -53,7 +53,7 @@ jobs:
           title: "Update to v4.0.0"
           commit-message: "Bump version to v4.0.0"
           body: "This pull request updates the version to v4.0.0"
-          base: 0.0.4
+          base: "0.0.4"
           head: "release/v1.0.0"
           draft: true
         env:
