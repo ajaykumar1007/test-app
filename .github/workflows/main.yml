@@ -60,6 +60,15 @@ jobs:
           #git add .
           #git commit -m "Add iOS build v${{ env.APP_VERSION }}"
           #git push
+          
+      - name: Notify Slack of build status
+        uses: actions/slack@v4
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          status_text: ${{ job.status }}
+          status_color: ${{ job.status == 'success' && '#2eb886' || '#ff6c5f' }}
+          text: "The status of the build is: ${{ job.status }}"
 
       - name: Clean up build artifacts
         run: rm -rf ./build
