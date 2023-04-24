@@ -49,7 +49,8 @@ jobs:
           cd archive-repo
           echo "*****************4th step****************************"
           pwd
-          ls -l
+          ls -l Documentation
+          ls -l Sources
           git branch -a
           python3 --version
           python --version
