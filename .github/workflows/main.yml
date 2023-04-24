@@ -17,50 +17,17 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-
       - name: Build iOS app
         run: |
-          pwd
-          mkdir -p ${{ env.REPO_DIR }}
-          echo "asvhgv haghf">test.txt
-          git branch
-          ls -l
-          mv test.txt ${{ env.REPO_DIR }}
-          echo "******************* fist setup************************************"
-          ls -l ${{ env.REPO_DIR }}
-          echo "************2nd step ***************"
-          pwd
-      - name: Clone archive repository
-        uses: actions/checkout@v3.0.2
-        with:
-          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-          ref: ${{ env.REPO_BRANCH }}
-          token: ${{ secrets.P_TOKEN }}
-          path: archive-repo
+          touch abc
+          # Sign the app with your code signing identity
+          # Package the app with the necessary assets
+          # Upload the app to the App Store using the App Store Connect API
 
-      - name: Copy iOS build to archive repository
-        run: |
-          ls -l
-          pwd
-          cp -r ${{ env.REPO_DIR }}/* archive-repo/
-          echo "***************3rd****************************"
-          ls -l 
-          pwd
-          cd archive-repo
-          echo "*****************4th step****************************"
-          pwd
-          ls -l Documentation
-          ls -l Sources/WonkaSDK.xcframework
-          git branch -a
-
-          
-      - name: Notify Slack of build status
-      - uses: actions/checkout@v2
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
 
       - name: Clean up build artifacts
         run: rm -rf ./build
