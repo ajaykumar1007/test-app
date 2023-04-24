@@ -21,7 +21,7 @@ jobs:
       - name: Build iOS app
         run: |
           #xcodebuild -scheme MyProject -configuration Release clean build
-          touch 
+          touch  tets12
           docker ps
           # Sign the app with your code signing identity
           # Package the app with the necessary assets
