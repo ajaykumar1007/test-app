@@ -42,16 +42,14 @@ jobs:
           ls -l
 
       - name: Git add and commit
-          run: |
+        run: |
             git add .
             git commit -m "Update to version"
 
       - name: Push Tag
-          run: |
+        run: |
             git tag 0.0.1
             git push origin 0.0.1
-
-
 
       - uses: 8398a7/action-slack@v3
         with:
