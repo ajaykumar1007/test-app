@@ -33,17 +33,9 @@ jobs:
           token: ${{ secrets.P_TOKEN }}
           path: archive-repo
 
-      - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
-      - run: |
-          pwd
-          # list clone repo directory 
-          ls -la
-          cp -r ${{ env.REPO_DIR }}/* archive-repo/
-          cd archive-repo/
-          ls -la
-
       - name: Git add and commit
         run: |
+            cp -r ${{ env.REPO_DIR }}/* archive-repo/
             cd archive-repo/
             pwd
             git add .
