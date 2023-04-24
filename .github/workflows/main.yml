@@ -31,7 +31,7 @@ jobs:
           echo "************2nd step ***************"
           pwd
       - name: Clone archive repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: ${{ env.REPO_BRANCH }}
