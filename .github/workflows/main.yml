@@ -59,7 +59,7 @@ jobs:
           #git config --global user.name "GitHub Actions"
           #git add .
           #git commit -m "Add iOS build v${{ env.APP_VERSION }}"
-          #git push
+          #git push 
           
       - name: Notify Slack of build status
       - uses: actions/checkout@v2
