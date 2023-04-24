@@ -36,10 +36,10 @@ jobs:
       - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
         run: |
           # list clone repo directory 
-          ls -l
+          ls -la
           cp -r ${{ env.REPO_DIR }}/* archive-repo/
           cd archive-repo/
-          ls -l
+          ls -la
 
       - name: Git add and commit
         run: |
