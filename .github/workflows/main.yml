@@ -10,6 +10,7 @@ env:
   REPO_OWNER: "PEER-Inc"
   REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
+
 jobs:
   build_and_upload:
     runs-on:  macos-latest
@@ -19,11 +20,11 @@ jobs:
 
       - name: Build iOS app
         run: |
-          pwd
-          mkdir -p ${{ env.REPO_DIR }}
-          
-      - name: Notify Slack of build status
-      - uses: actions/checkout@v2
+          xcodebuild -scheme MyProject -configuration Release clean build
+          # Sign the app with your code signing identity
+          # Package the app with the necessary assets
+          # Upload the app to the App Store using the App Store Connect API
+
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
