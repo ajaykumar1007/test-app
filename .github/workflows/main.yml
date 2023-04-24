@@ -23,6 +23,7 @@ jobs:
           touch  tets12
           mkdir -p ${{ env.REPO_DIR }}
           cp tets12 ${{ env.REPO_DIR }}
+          rm -rf .git*
 
 
       - name: Clone wonka-ios-spm-library-releases repository
@@ -38,10 +39,25 @@ jobs:
             cp -r ${{ env.REPO_DIR }}/* archive-repo/
             cd archive-repo/
             pwd
+            git branch
             git add .
             git commit -m "Update to version"
-            git tag 0.0.2
+            git tag 0.0.3
             git push origin 0.0.2
+
+
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3.10.0
+        with:
+          title: "Update to v1.0.0"
+          commit-message: "Bump version to v3.0.0"
+          body: "This pull request updates the version to v3.0.0"
+          base: main
+          head: "release/v1.0.0"
+          draft: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.P_TOKEN }}
 
       - uses: 8398a7/action-slack@v3
         with:
