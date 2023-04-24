@@ -24,10 +24,11 @@ jobs:
           # Package the app with the necessary assets
           # Upload the app to the App Store using the App Store Connect API
 
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
+      - name: Send GitHub Action trigger data to Slack workflow
+        id: slack
+        uses: slackapi/slack-github-action@v1.23.0
         env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
       - name: Clean up build artifacts
         run: rm -rf ./build
