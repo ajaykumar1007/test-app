@@ -6,8 +6,8 @@ on:
       - master
 
 env:
-  REPO_NAME: "wonka-ios-spm-library-releases"
-  REPO_OWNER: "PEER-Inc"
+  REPO_NAME: "ajaykumar1007"
+  REPO_OWNER: "ci-repo"
   REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
 
@@ -20,12 +20,38 @@ jobs:
 
       - name: Build iOS app
         run: |
-          #xcodebuild -scheme MyProject -configuration Release clean build
           touch  tets12
-          #docker ps
-          # Sign the app with your code signing identity
-          # Package the app with the necessary assets
-          # Upload the app to the App Store using the App Store Connect API
+          mkdir -p ${{ env.REPO_DIR }}
+          cp tets12 ${{ env.REPO_DIR }}
+
+
+      - name: Clone wonka-ios-spm-library-releases repository
+        uses: actions/checkout@v3.0.2
+        with:
+          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
+          ref: ${{ env.REPO_BRANCH }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+          path: archive-repo
+
+      - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
+        run: |
+          # list clone repo directory 
+          ls -l
+          cp -r ${{ env.REPO_DIR }}/* archive-repo/
+          cd archive-repo/
+          ls -l
+
+      - name: Git add and commit
+          run: |
+            git add .
+            git commit -m "Update to version"
+
+      - name: Push Tag
+          run: |
+            git tag 0.0.1
+            git push origin 0.0.1
+
+
 
       - uses: 8398a7/action-slack@v3
         with:
