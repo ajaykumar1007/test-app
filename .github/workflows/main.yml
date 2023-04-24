@@ -37,7 +37,7 @@ jobs:
              pwd
 
       - name: Copy wonka-sdk-build to wonka-ios-spm-library-releases repository
-        run: |
+      - run: |
           pwd
           # list clone repo directory 
           ls -la
@@ -52,8 +52,8 @@ jobs:
             pwd
             git add .
             git commit -m "Update to version"
-            git tag 0.0.1
-            git push origin 0.0.1
+            git tag 0.0.2
+            git push origin 0.0.2
 
       - uses: 8398a7/action-slack@v3
         with:
