@@ -38,8 +38,9 @@ jobs:
         run: |
             cp -r ${{ env.REPO_DIR }}/* archive-repo/
             cd archive-repo/
+            git describe --tags $(git rev-list --tags --max-count=1)
             a=$(git describe --tags $(git rev-list --tags --max-count=1))
-            echo $a
+           # echo $a
             pwd
             git branch
             #git add .
