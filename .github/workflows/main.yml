@@ -39,23 +39,14 @@ jobs:
         env:
           token: ${{ secrets.P_TOKEN }}
         run: |
-            echo "************bsvcgvg**************************"
-            pwd
-            ls -l
-            ls -l ../
             cp -r ../${{ env.REPO_DIR }}/* .
             git status
-            cd archive-repo/
             #git describe --tags $((git rev-list --tags --max-count=1))
-            pwd
             git branch
             git add .
             git commit -m "Update to version"
             git tag 0.0.7
             git push origin 0.0.7
-            cd 
-
-
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
