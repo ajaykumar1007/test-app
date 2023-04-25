@@ -23,7 +23,7 @@ jobs:
           touch  tets126
           mkdir -p ${{ env.REPO_DIR }}
           cp tets126 ${{ env.REPO_DIR }}
-          #rm -rf .git*
+          rm -rf .git*
 
 
       - name: Clone wonka-ios-spm-library-releases repository
@@ -52,7 +52,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3.10.0
         with:
           token: ${{ secrets.P_TOKEN }}
-          title: "Update to v5.0.0"
+          title: "Update to v6.0.0"
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           draft: true
 
