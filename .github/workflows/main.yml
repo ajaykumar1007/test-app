@@ -15,14 +15,15 @@ jobs:
     runs-on:  macos-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+      - name: Get tags
+        run: git fetch --tags origin
 
       - name: Build iOS app
         run: |
           touch  ajay.txt 
           mkdir -p ${{ env.REPO_DIR }}
           cp ajay.txt ${{ env.REPO_DIR }}
-          git fetch --all
 
       - name: Clone wonka-ios-spm-library-releases repository
         uses: actions/checkout@v3.0.2
