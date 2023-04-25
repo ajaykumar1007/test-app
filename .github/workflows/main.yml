@@ -33,10 +33,15 @@ jobs:
           ref: ${{ env.REPO_BRANCH }}
           token: ${{ secrets.P_TOKEN }}
           path: ./archive-repo
-          name: clone test
-          run: |
+         
+      - name: clone test
+        working-directory: ./archive-repo
+        env:
+          token: ${{ secrets.P_TOKEN }}
+        run: |
             echo "************bsvcgvg**************************"
             pwd
+            env
             cp -r ${{ env.REPO_DIR }}/* archive-repo/
             cd archive-repo/
             #git describe --tags $((git rev-list --tags --max-count=1))
