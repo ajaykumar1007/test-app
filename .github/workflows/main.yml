@@ -38,7 +38,7 @@ jobs:
         run: |
             #rm -rf Sources/*
             cp -r ../${{ env.REPO_DIR }}/* .
-            pip install gitpython
+            pip3 install gitpython
             python3 ../a.py
 
       - name: Slack Notification
