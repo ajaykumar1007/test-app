@@ -2,6 +2,7 @@ import git
 
 source_repo = git.Repo('../')
 try:
+  print(sorted(source_repo.tags,key=lambda t: t.commit.committed_datetime))
   latest_tag=sorted(source_repo.tags,key=lambda t: t.commit.committed_datetime)[-1]
 except:
   latest_tag="0.0.1"
