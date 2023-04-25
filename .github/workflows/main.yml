@@ -45,13 +45,14 @@ jobs:
             git commit -m "Update to version"
             #git tag 0.0.7
             #git push origin 0.0.7
+            cd 
 
 
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v3.10.0
         with:
-          working-directory: ./archive-repo
+          path: ./archive-repo
           token: ${{ secrets.P_TOKEN }}
           title: "Update to v6.0.0"
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
