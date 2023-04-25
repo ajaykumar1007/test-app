@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - master
-
 env:
   REPO_NAME: "ci-repo"
   REPO_OWNER: "ajaykumar1007"
@@ -20,11 +19,9 @@ jobs:
 
       - name: Build iOS app
         run: |
-          touch  tets1266565
+          touch  ajay.txt
           mkdir -p ${{ env.REPO_DIR }}
-          cp tets1266565 ${{ env.REPO_DIR }}
-          rm -rf .git*
-
+          cp ajay.txt ${{ env.REPO_DIR }}
 
       - name: Clone wonka-ios-spm-library-releases repository
         uses: actions/checkout@v3.0.2
@@ -34,41 +31,17 @@ jobs:
           token: ${{ secrets.P_TOKEN }}
           path: ./archive-repo
          
-      - name: clone test
+      - name: Wonka SDK push in wonka-ios-spm-library-releases repository
         working-directory: ./archive-repo
         env:
           token: ${{ secrets.P_TOKEN }}
         run: |
-            cp -r ../${{ env.REPO_DIR }}/* .
-            git status
-            git tag -l -n1
-            tag_name=$(git describe --tags $(git rev-list --tags --max-count=1))
-            git show-ref --tags
-            echo $tag_name
-            git branch
-            git add .
-            git commit -m "Update to version"
-            git tag 0.0.7
-            git push origin 0.0.7
+            #rm -rf Sources/*
+            cp -r ../${{ env.REPO_DIR }}/* Sources/
+            python3 ../a.py
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3.10.0
-        with:
-          path: ./archive-repo
-          token: ${{ secrets.P_TOKEN }}
-          title: "Update to v8.0.0"
-          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-          #draft: true
-
-#           commit-message: "Bump version to v4.0.0"
-#           body: "This pull request updates the version to v5.0.0"
-#           base: "main"
-#           head: "release/v1.0.0"
-#           draft: true
-#         env:
-#           GITHUB_TOKEN: ${{ secrets.P_TOKEN }}
-
-      - uses: 8398a7/action-slack@v3
+      - name: Slack Notification
+        uses: 8398a7/action-slack@v3
         with:
           status: custom
           fields: workflow,job,commit,repo,ref,author,took
