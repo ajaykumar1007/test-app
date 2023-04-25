@@ -19,7 +19,7 @@ jobs:
 
       - name: Build iOS app
         run: |
-          touch  ajay.txt
+          touch  ajay.txt 
           mkdir -p ${{ env.REPO_DIR }}
           cp ajay.txt ${{ env.REPO_DIR }}
 
