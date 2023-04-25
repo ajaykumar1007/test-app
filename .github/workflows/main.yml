@@ -20,9 +20,9 @@ jobs:
 
       - name: Build iOS app
         run: |
-          touch  tets126
+          touch  tets1266565
           mkdir -p ${{ env.REPO_DIR }}
-          cp tets126 ${{ env.REPO_DIR }}
+          cp tets1266565 ${{ env.REPO_DIR }}
           rm -rf .git*
 
 
@@ -43,7 +43,8 @@ jobs:
             pwd
             ls -l
             ls -l ../
-            cp -r ../${{ env.REPO_DIR }}/* archive-repo/
+            cp -r ../${{ env.REPO_DIR }}/* .
+            git status
             cd archive-repo/
             #git describe --tags $((git rev-list --tags --max-count=1))
             pwd
