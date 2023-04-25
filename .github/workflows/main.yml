@@ -22,7 +22,7 @@ jobs:
         run: |
           touch  tets126
           mkdir -p ${{ env.REPO_DIR }}
-          cp tets12 ${{ env.REPO_DIR }}
+          cp tets126 ${{ env.REPO_DIR }}
           #rm -rf .git*
 
 
