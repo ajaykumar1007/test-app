@@ -33,14 +33,12 @@ jobs:
           ref: ${{ env.REPO_BRANCH }}
           token: ${{ secrets.P_TOKEN }}
           path: ./archive-repo
-
-      - name: Git add and commit
-        run: |
+          run: |
             echo "************bsvcgvg**************************"
             pwd
             cp -r ${{ env.REPO_DIR }}/* archive-repo/
             cd archive-repo/
-            git describe --tags $((git rev-list --tags --max-count=1))
+            #git describe --tags $((git rev-list --tags --max-count=1))
             pwd
             git branch
             git add .
