@@ -41,6 +41,7 @@ jobs:
         run: |
             cp -r ../${{ env.REPO_DIR }}/* .
             git status
+            git tag -l -n1
             tag_name=$(git describe --tags $(git rev-list --tags --max-count=1))
             git show-ref --tags
             echo $tag_name
