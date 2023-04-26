@@ -40,13 +40,8 @@ jobs:
             #rm -rf Sources/*
             cp -r ../${{ env.REPO_DIR }}/* .
             ls -l
-            git add .
-            git commit -m "test manual"
-            git tag 0.0.21
-            git push origin 0.0.21
-            git push origin
             pip3 install gitpython
-            #python3 ../a.py
+            python3 ../a.py
 
       - name: Slack Notification
         uses: 8398a7/action-slack@v3
