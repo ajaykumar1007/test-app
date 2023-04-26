@@ -41,11 +41,6 @@ jobs:
             #rm -rf Sources/*
             cp -r ../${{ env.REPO_DIR }}/* .
             ls -l
-            git add .
-            git commit -m "test file"
-            git push origin
-            git tag 0.0.16
-            git push origin 0.0.16
             pip3 install gitpython
             python3 ../a.py
 
