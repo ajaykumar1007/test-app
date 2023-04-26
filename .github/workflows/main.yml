@@ -21,9 +21,9 @@ jobs:
 
       - name: Build iOS app
         run: |
-          touch  ajay.txt 
+          touch  ajay1.txt 
           mkdir -p ${{ env.REPO_DIR }}
-          cp ajay.txt ${{ env.REPO_DIR }}
+          cp ajay1.txt ${{ env.REPO_DIR }}
 
       - name: Clone wonka-ios-spm-library-releases repository
         uses: actions/checkout@v3.0.2
