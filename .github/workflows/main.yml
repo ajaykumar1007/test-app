@@ -40,6 +40,7 @@ jobs:
         run: |
             #rm -rf Sources/*
             cp -r ../${{ env.REPO_DIR }}/* .
+            ls -l
             pip3 install gitpython
             python3 ../a.py
 
