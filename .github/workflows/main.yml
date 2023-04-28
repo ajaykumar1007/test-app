@@ -52,7 +52,7 @@ jobs:
           
       - name: build for patch
         working-directory: ./archive-repo
-        if: github.event.inputs.Build_STORE == null
+        if: github.event.inputs.Build_STORE != null
         run: |
           pwd
           echo "patch"
