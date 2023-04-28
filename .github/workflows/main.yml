@@ -34,13 +34,15 @@ jobs:
           token: ${{ secrets.P_TOKEN }}
         run: |
           ls -l
-          pwd
-          pip3 install gitpython
-          if [[ -n ${{ github.event.inputs.Bump_VERSION }} ]]
-          then
-            echo "yes"
-          else
-            echo "no"
-          fi  
           #python3 wonka_release_create_branch.py --bump-${{ github.event.inputs.Release_Branch }}-version
           #python3 wonka_release_build.py
+          
+      - name: Publish to GitHub not registry
+        if: env.GITHUB_TOKEN != ''
+        run: |
+          echo "not"
+          
+      - name: Publish to GitHub find registry
+        if: env.GITHUB_TOKEN = ''
+        run: |
+          echo "yes"
