@@ -43,6 +43,6 @@ jobs:
           echo "not"
           
       - name: Publish to GitHub find registry
-        if: env.GITHUB_TOKEN = ''
+        if: env.GITHUB_TOKEN == ''
         run: |
           echo "yes"
