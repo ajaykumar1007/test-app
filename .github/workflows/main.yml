@@ -34,6 +34,7 @@ jobs:
           token: ${{ secrets.P_TOKEN }}
         run: |
           ls -l
-           pwd
-           python3 wonka_release_create_branch.py
-           python3 wonka_release_build.py
+          pwd
+          pip3 install gitpython
+          python3 wonka_release_create_branch.py
+          python3 wonka_release_build.py
