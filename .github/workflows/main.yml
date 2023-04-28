@@ -36,7 +36,7 @@ jobs:
           ls -l
           pwd
           pip3 install gitpython
-          if [[ -n ${{ github.event.inputs.Release_Branch }} ]]
+          if [[ -n ${{ github.event.inputs.Bump_VERSION }} ]]
           then
             echo "yes"
           else
