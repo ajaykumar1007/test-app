@@ -35,3 +35,5 @@ jobs:
         run: |
           ls -l
            pwd
+           python3 wonka_release_create_branch.py
+           python3 wonka_release_build.py
