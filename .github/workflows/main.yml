@@ -1,58 +1,49 @@
 name: Manual Trigger Of The Release
-on: 
+
+on:
   workflow_dispatch:
     inputs:
       Release_Branch:
-        description: Branch on which the release process should be done    
+        description: Branch on which the release process should be done
         required: true
       Build_STORE:
-        description: The build store or development (dev by default)    
+        description: The build store or development (dev by default)
         #default: dev
       Bump_VERSION:
-        description: We bump patch, minor or major version (patch by default)    
+        description: We bump patch, minor or major version (patch by default)
 
 env:
   REPO_NAME: "ci-repo"
   REPO_OWNER: "ajaykumar1007"
-  #REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
 
 jobs:
   build_with_signing:
     runs-on: macos-latest
     steps:
-      - name: Clone wonka-ios-spm-library-releases repository
-        uses: actions/checkout@v3.0.2
+      - name: Checkout repository
+        uses: actions/checkout@v2
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: ${{ github.event.inputs.Release_Branch }}
           token: ${{ secrets.P_TOKEN }}
           path: ./archive-repo
-      - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
+      - name: Build Wonka SDK
         working-directory: ./archive-repo
         env:
           token: ${{ secrets.P_TOKEN }}
+          BUMP_VERSION: ${{ github.event.inputs.Bump_VERSION }}
         run: |
-          ls -l
-          #python3 wonka_release_create_branch.py --bump-${{ github.event.inputs.Release_Branch }}-version
-          #python3 wonka_release_build.py
-          
-      - name: build for major
-        working-directory: ./archive-repo
-        if: github.event.inputs.Bump_VERSION  == 'major'
-        run: |
-          pwd
-          echo "major"
-      - name: build for minor
-        working-directory: ./archive-repo
-        if: github.event.inputs.Bump_VERSION  == 'minor'
-        run: |
-          pwd
-          echo "minor"
-          
-      - name: build for patch
-        working-directory: ./archive-repo
-        if: github.event.inputs.Bump_VERSION == null
-        run: |
-          pwd
-          echo "patch"
+          echo "Current directory: $(pwd)"
+          echo "Contents of directory: $(ls -l)"
+          # Run scripts for version bump and build based on BUMP_VERSION input
+          if [ "$BUMP_VERSION" == "major" ]; then
+            echo "Bumping major version"
+            # Run script for major version bump
+          elif [ "$BUMP_VERSION" == "minor" ]; then
+            echo "Bumping minor version"
+            # Run script for minor version bump
+          else
+            echo "Bumping patch version"
+            # Run script for patch version bump
+          fi
