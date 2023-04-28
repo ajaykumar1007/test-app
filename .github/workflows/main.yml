@@ -33,7 +33,7 @@ jobs:
       - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
         working-directory: ./archive-repo
         env:
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.P_TOKEN }}
         run: |
           ls -l
            pwd
