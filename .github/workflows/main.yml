@@ -36,5 +36,11 @@ jobs:
           ls -l
           pwd
           pip3 install gitpython
-          python3 wonka_release_create_branch.py
-          python3 wonka_release_build.py
+          if [[ -n ${{ github.event.inputs.Release_Branch }} ]]
+          then
+            echo "yes"
+          else
+            echo "no"
+          fi  
+          #python3 wonka_release_create_branch.py --bump-${{ github.event.inputs.Release_Branch }}-version
+          #python3 wonka_release_build.py
