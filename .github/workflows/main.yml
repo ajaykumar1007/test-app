@@ -19,23 +19,21 @@ env:
   #REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
 
-  jobs:
-    build_with_signing:
-      runs-on: macos-latest
-
-      steps:
-        - name: Clone wonka-ios-spm-library-releases repository
-          uses: actions/checkout@v3.0.2
-          with:
-            repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-            ref: ${{ github.event.inputs.Release_Branch }}
-            token: ${{ secrets.ACCESS_TOKEN }}
-            path: ./archive-repo
-
-        - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
-          working-directory: ./archive-repo
-          env:
-            token: ${{ secrets.ACCESS_TOKEN }}
-          run: |
-            ls -l
-             pwd
+jobs:
+  build_with_signing:
+    runs-on: macos-latest
+    steps:
+      - name: Clone wonka-ios-spm-library-releases repository
+        uses: actions/checkout@v3.0.2
+        with:
+          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
+          ref: ${{ github.event.inputs.Release_Branch }}
+          token: ${{ secrets.ACCESS_TOKEN }}
+          path: ./archive-repo
+      - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
+        working-directory: ./archive-repo
+        env:
+          token: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          ls -l
+           pwd
