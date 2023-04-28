@@ -1,57 +1,41 @@
-name: Build and Upload iOS App
+name: Manual Trigger Of The Release
+on: 
+  workflow_dispatch:
+    inputs:
+      Release_Branch:
+        description: Branch on which the release process should be done    
+        required: true
+      Build_STORE:
+        description: the build store or development (dev by default)    
+        required: true
+        default: dev
+      Bump_VERSION:
+        description: we bump patch, minor or major version (patch by default)    
+        required: true
 
-on:
-  push:
-    branches:
-      - master
 env:
   REPO_NAME: "ci-repo"
   REPO_OWNER: "ajaykumar1007"
-  REPO_BRANCH: "main"
+  #REPO_BRANCH: "main"
   REPO_DIR: "wonka-sdk-build"
 
-jobs:
-  build_and_upload:
-    runs-on:  macos-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-      - name: Get tags
-        run: git fetch --tags origin
+  jobs:
+    build_with_signing:
+      runs-on: macos-latest
 
-      - name: Build iOS app
-        run: |
-          mkdir -p ${{ env.REPO_DIR }}
-          cp -r abc/*  ${{ env.REPO_DIR }}
+      steps:
+        - name: Clone wonka-ios-spm-library-releases repository
+          uses: actions/checkout@v3.0.2
+          with:
+            repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
+            ref: ${{ github.event.inputs.Release_Branch }}
+            token: ${{ secrets.ACCESS_TOKEN }}
+            path: ./archive-repo
 
-      - name: Clone wonka-ios-spm-library-releases repository
-        uses: actions/checkout@v3.0.2
-        with:
-          repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
-          ref: ${{ env.REPO_BRANCH }}
-          token: ${{ secrets.P_TOKEN }}
-          path: ./archive-repo
-         
-      - name: Wonka SDK push in wonka-ios-spm-library-releases repository
-        working-directory: ./archive-repo
-        env:
-          token: ${{ secrets.P_TOKEN }}
-        run: |
-            #rm -rf Sources/*
-            cp -r ../${{ env.REPO_DIR }}/* .
+        - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
+          working-directory: ./archive-repo
+          env:
+            token: ${{ secrets.ACCESS_TOKEN }}
+          run: |
             ls -l
-            pip3 install gitpython
-            python3 ../a.py
-
-      - name: Slack Notification
-        uses: 8398a7/action-slack@v3
-        with:
-            working-directory: ./archive-repo
-            status: ${{ job.status }}
-            fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        if: always() 
-
-      - name: Clean up build artifacts
-        run: rm -rf ./build
+             pwd
