@@ -6,12 +6,10 @@ on:
         description: Branch on which the release process should be done    
         required: true
       Build_STORE:
-        description: the build store or development (dev by default)    
-        #required: true
-        default: dev
+        description: The build store or development (dev by default)    
+        #default: dev
       Bump_VERSION:
-        description: we bump patch, minor or major version (patch by default)    
-        required: true
+        description: We bump patch, minor or major version (patch by default)    
 
 env:
   REPO_NAME: "ci-repo"
