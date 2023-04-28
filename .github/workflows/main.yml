@@ -8,7 +8,7 @@ on:
         required: true
       Build_STORE:
         description: The build store or development (dev by default)
-        #default: dev
+        default: dev
       Bump_VERSION:
         description: We bump patch, minor or major version (patch by default)
 
@@ -34,16 +34,16 @@ jobs:
           token: ${{ secrets.P_TOKEN }}
           BUMP_VERSION: ${{ github.event.inputs.Bump_VERSION }}
         run: |
-          echo "Current directory: $(pwd)"
-          echo "Contents of directory: $(ls -l)"
+          # Install python git module
+          pip3 install gitpython
           # Run scripts for version bump and build based on BUMP_VERSION input
           if [ "$BUMP_VERSION" == "major" ]; then
-            echo "Bumping major version"
-            # Run script for major version bump
+            python3 wonka_release_create_branch.py --bump-major-version
+            python3 wonka_release_build.py
           elif [ "$BUMP_VERSION" == "minor" ]; then
-            echo "Bumping minor version"
-            # Run script for minor version bump
+            epython3 wonka_release_create_branch.py --bump-minor-version
+            python3 wonka_release_build.py
           else
-            echo "Bumping patch version"
-            # Run script for patch version bump
+            python3 wonka_release_create_branch.py
+            python3 wonka_release_build.py
           fi
