@@ -38,11 +38,13 @@ jobs:
           #python3 wonka_release_build.py
           
       - name: Publish to GitHub not registry
-        if: env.GITHUB_TOKEN != ''
+        if: github.event.inputs.Build_STORE  != ''
         run: |
+          pwd
           echo "not"
           
       - name: Publish to GitHub find registry
         if: env.GITHUB_TOKEN == ''
         run: |
+          pwd
           echo "yes"
