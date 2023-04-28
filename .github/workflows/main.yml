@@ -28,7 +28,7 @@ jobs:
         with:
           repository: ${{ env.REPO_OWNER }}/${{ env.REPO_NAME }}
           ref: ${{ github.event.inputs.Release_Branch }}
-          token: ${{ secrets.ACCESS_TOKEN }}
+          token: ${{ secrets.P_TOKEN }}
           path: ./archive-repo
       - name: Wonka SDK push in feature/wonka-ios-spm-library-releases repository
         working-directory: ./archive-repo
