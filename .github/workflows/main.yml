@@ -7,7 +7,7 @@ on:
         required: true
       Build_STORE:
         description: the build store or development (dev by default)    
-        required: true
+        #required: true
         default: dev
       Bump_VERSION:
         description: we bump patch, minor or major version (patch by default)    
