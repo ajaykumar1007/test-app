@@ -1,4 +1,13 @@
 name: sonarqube-check
+env: 
+  GITHUB_REPOSITORY      : ${{ github.event.repository.name }}
+  BACKUP_DIR             : 'backups'
+
+  # Parameters for SonarQube:
+  SONAR_TOKEN            : ${{ secrets.SONAR_TOKEN }}
+  #SONAR_HOST_URL         : ${{ secrets.SONAR_HOST_URL }}
+  SONAR_HOST_URL         : 'https://sq.peer.inc/'
+  FETCH_DEPT             : '0'
 on:
   push:
     branches:
@@ -8,6 +17,10 @@ jobs:
     name: sonarqube-check
     runs-on: ubuntu-latest
     steps:
+      - name: set SonarQube project
+        run: echo "sonar.projectKey=${{ env.GITHUB_REPOSITORY}}" > sonar-project.properties
+      - run: sleep 20 
+      
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
