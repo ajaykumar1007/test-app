@@ -16,6 +16,7 @@ jobs:
         run: |
           echo "sonar.projectKey=${{ env.GITHUB_REPOSITORY}}" > sonar-project.properties
           echo "${{ env.GITHUB_REPOSITORY}}"
+          cat sonar-project.properties
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
